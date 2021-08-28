@@ -46,7 +46,7 @@ object Dependencies {
 
   val akkaStreamTyped       = "com.typesafe.akka"       %% "akka-stream-typed"                  % akkaVersion
   val akkaHttp              = "com.typesafe.akka"       %% "akka-http"                          % akkaHttpVersion
-  val akkaHttpJsonJackson   = "de.heikoseeberger"       %% "akka-http-jackson"                  % akkaHttpJsonVersion
+  val akkaHttpJsonJackson   = "com.typesafe.akka"       %% "akka-http-jackson"                  % akkaHttpJsonVersion
   val akkatyped             = "com.typesafe.akka"       %% "akka-actor-typed"                   % akkaVersion
 
   val gson                  = "com.google.code.gson"     % "gson"                               % gsonVersion
@@ -57,12 +57,12 @@ object Dependencies {
   val silencer              = "com.github.ghik"         %% "silencer-lib"                       % silencerVersion     % Provided
   val silencerPlugin        = "com.github.ghik"         %% "silencer-plugin"                    % silencerVersion     % Provided
 
-  val silencerDependencies = Seq(compilerPlugin(silencerPlugin), silencer)
+  //val silencerDependencies = Seq(compilerPlugin(silencerPlugin), silencer)
 
-  val modelsDependencies = Seq(PMMLEvaluator, PMMLExtensions, tensorFlow, tensorFlowProto) ++ silencerDependencies
-  val clientDependencies = Seq(kafka, curator, commonIO, slf4jlog4j) ++ silencerDependencies
-  val flinkDependencies = Seq(flinkScala, flinkStreaming, flinkKafka, flinkQueryableRuntime, flinkQueryableClient, joda, slf4jlog4j) ++ silencerDependencies
-  val sparkDependencies = Seq(sparkcore, sparkstreaming, sparkkafka, sparkSQL, sparkSQLkafka, slf4jlog4j) ++ silencerDependencies
-  val akkaServerDependencies = Seq(alpakkaKafka, akkaStreamTyped, akkatyped, akkaHttp, akkaHttpJsonJackson, slf4jlog4j) ++ silencerDependencies
+  val modelsDependencies = Seq(PMMLEvaluator, PMMLExtensions, tensorFlow, tensorFlowProto) //++ silencerDependencies
+  val clientDependencies = Seq(kafka, curator, commonIO, slf4jlog4j) //++ silencerDependencies
+  val flinkDependencies = Seq(flinkScala, flinkStreaming, flinkKafka, flinkQueryableRuntime, flinkQueryableClient, joda, slf4jlog4j) //++ silencerDependencies
+  val sparkDependencies = Seq(sparkcore, sparkstreaming, sparkkafka, sparkSQL, sparkSQLkafka, slf4jlog4j) //++ silencerDependencies
+  val akkaServerDependencies = Seq(alpakkaKafka, akkaStreamTyped, akkatyped, akkaHttp, akkaHttpJsonJackson, slf4jlog4j) //++ silencerDependencies
 
 }

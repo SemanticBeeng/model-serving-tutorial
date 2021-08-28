@@ -24,7 +24,7 @@ import kafka.utils.ZkUtils
 import org.apache.commons.io.FileUtils
 import org.apache.curator.test.TestingServer
 import org.slf4j.LoggerFactory
-import com.github.ghik.silencer.silent
+//import com.github.ghik.silencer.silent
 
 /** A convenience utility for running a local, single instance of Kafka. */
 class KafkaLocalServer private (kafkaProperties: Properties, zooKeeperServer: ZooKeeperLocalServer) {
@@ -32,7 +32,7 @@ class KafkaLocalServer private (kafkaProperties: Properties, zooKeeperServer: Zo
   import KafkaLocalServer._
 
   private var broker = null.asInstanceOf[KafkaServerStartable]
-  @silent
+  //@silent
   private var zkUtils : ZkUtils =
     ZkUtils.apply(s"localhost:${zooKeeperServer.getPort()}", DEFAULT_ZK_SESSION_TIMEOUT_MS, DEFAULT_ZK_CONNECTION_TIMEOUT_MS, false)
 
@@ -78,7 +78,7 @@ class KafkaLocalServer private (kafkaProperties: Properties, zooKeeperServer: Zo
     * @param replication The replication factor for (partitions of) this topic.
     * @param topicConfig Additional topic-level configuration settings.
     */
-  @silent
+  //@silent
   def createTopic(topic: String, partitions: Int, replication: Int, topicConfig: Properties): Unit = {
     AdminUtils.createTopic(zkUtils, topic, partitions, replication, topicConfig, RackAwareMode.Enforced)
   }
