@@ -15,8 +15,7 @@
 
 package com.lightbend.modelserving.tensorflowserving
 
-import akka.actor.typed.Scheduler
-import akka.actor.typed.ActorRef
+import akka.actor.typed.{ActorRef, Scheduler}
 import akka.actor.typed.scaladsl.AskPattern._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route

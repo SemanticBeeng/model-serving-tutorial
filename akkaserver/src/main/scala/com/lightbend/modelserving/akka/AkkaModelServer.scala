@@ -22,7 +22,6 @@ import akka.actor.typed.{ActorRef, ActorSystem}
 import akka.http.scaladsl.Http
 import akka.kafka.scaladsl.Consumer
 import akka.kafka.{ConsumerSettings, Subscriptions}
-import akka.stream.ActorMaterializer
 import akka.stream.typed.scaladsl.ActorFlow
 import akka.stream.scaladsl.Sink
 import akka.util.Timeout
@@ -47,7 +46,6 @@ object AkkaModelServer {
     Behaviors.setup[ModelServerManagerActor](
       context => new ModelServerManagerBehavior(context)), "ModelServing")
 
-  //implicit val materializer =  ActorMaterializer()
   implicit val executionContext = modelServerManager.executionContext
   implicit val askTimeout = Timeout(30.seconds)
 

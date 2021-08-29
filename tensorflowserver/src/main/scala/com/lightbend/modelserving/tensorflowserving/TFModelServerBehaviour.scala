@@ -20,7 +20,6 @@ import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.{AbstractBehavior, ActorContext}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
-import akka.stream.ActorMaterializer
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
@@ -39,7 +38,6 @@ class TFModelServerBehaviour(context: ActorContext[TFModelServerActor]) extends 
   println(s"Creating a new Model Server")
 
   implicit val system = ActorSystem()
-  //implicit val materializer = ActorMaterializer()
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext = system.dispatcher
 
