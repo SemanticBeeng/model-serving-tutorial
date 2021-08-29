@@ -108,7 +108,7 @@ class TFModelServerBehaviour(context: ActorContext[TFModelServerActor]) extends 
                 // result
                 record.reply ! Some(ServingResult("TensorFlow Model Serving", "wine", record.record.ts, quality))
               })
-            case Failure(_)   => sys.error("something wrong")
+            case Failure(res)   => sys.error(s"something is wrong $res")
               record.reply ! None
           }
       case getState : GetState => // State query
