@@ -31,7 +31,7 @@ import com.lightbend.modelserving.model.{ModelToServeStats, ServingResult}
 /**
   * This actor forwards requests to score records to TensorFlow Serving
   */
-class TFModelServerBehaviour(context: ActorContext[TFModelServerActor]) extends AbstractBehavior[TFModelServerActor] {
+class TFModelServerBehaviour(context: ActorContext[TFModelServerActor]) extends AbstractBehavior[TFModelServerActor](context) {
 
   var currentState = new ModelToServeStats("TensorFlow Model Serving",  "TensorFlow Model Serving")
   val gson = new Gson
@@ -39,7 +39,7 @@ class TFModelServerBehaviour(context: ActorContext[TFModelServerActor]) extends 
   println(s"Creating a new Model Server")
 
   implicit val system = ActorSystem()
-  implicit val materializer = ActorMaterializer()
+  //implicit val materializer = ActorMaterializer()
   // needed for the future flatMap/onComplete in the end
   implicit val executionContext = system.dispatcher
 

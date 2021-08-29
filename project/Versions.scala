@@ -16,7 +16,7 @@
 object Versions {
 
   val tensorflowVersion     = "1.15.0"
-  val PMMLVersion           = "1.5.15"
+  val PMMLVersion           = "1.4.3" //"1.5.15"
 
   val kafkaVersion          = "2.3.0"
   val jodaVersion           = "2.10.3"
@@ -31,7 +31,7 @@ object Versions {
   val alpakkaKafkaVersion   = "2.1.1"
   val akkaVersion           = "2.6.16"
   val akkaHttpVersion       = "10.2.6"
-  val akkaHttpJsonVersion   = "10.2.6"
+  val akkaHttpJsonVersion   = "1.37.0"
 
   val gsonVersion           = "2.8.5"
 

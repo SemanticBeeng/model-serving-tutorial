@@ -24,7 +24,7 @@ import com.lightbend.modelserving.model.ModelToServeStats
   * models, and retrieving the current state to support external state queries.
   * @param context
   */
-class ModelServerManagerBehavior(context: ActorContext[ModelServerManagerActor]) extends AbstractBehavior[ModelServerManagerActor] {
+class ModelServerManagerBehavior(context: ActorContext[ModelServerManagerActor]) extends AbstractBehavior[ModelServerManagerActor](context) {
 
   println("Creating Model Serving Manager")
 

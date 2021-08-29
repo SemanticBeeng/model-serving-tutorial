@@ -69,9 +69,12 @@ object ModelServingFlatJob {
     config.setString(JobManagerOptions.ADDRESS, "localhost")
     config.setInteger(TaskManagerOptions.NUM_TASK_SLOTS, parallelism)
 
-    // Create a local Flink server
-    val flinkCluster = new MiniCluster(
-      new MiniClusterConfiguration(config, 1, RpcServiceSharing.SHARED, null))
+    val flinkCluster = new MiniCluster(new MiniClusterConfiguration.Builder()
+      .setConfiguration(config)
+      .setNumTaskManagers(1)
+      .setRpcServiceSharing(RpcServiceSharing.SHARED)
+      .setCommonBindAddress(null)
+      .build())
     try {
       // Start server and create environment
       flinkCluster.start()

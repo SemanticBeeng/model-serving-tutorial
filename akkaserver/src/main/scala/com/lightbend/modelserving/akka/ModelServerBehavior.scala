@@ -22,7 +22,7 @@ import com.lightbend.model.winerecord.WineRecord
 import com.lightbend.modelserving.model.{Model, ModelToServe, ModelToServeStats, ServingResult}
 
 /** Akka Typed Actor for handling a single model, including updates to it and scoring with it. */
-class ModelServerBehavior(context: ActorContext[ModelServerActor], dataType : String) extends AbstractBehavior[ModelServerActor] {
+class ModelServerBehavior(context: ActorContext[ModelServerActor], dataType : String) extends AbstractBehavior[ModelServerActor](context) {
 
   println(s"Creating a new Model Server for data type $dataType")
 

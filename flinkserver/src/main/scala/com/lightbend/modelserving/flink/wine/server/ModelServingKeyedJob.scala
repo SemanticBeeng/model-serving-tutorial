@@ -94,9 +94,15 @@ object ModelServingKeyedJob {
     config.setInteger(QueryableStateOptions.SERVER_ASYNC_QUERY_THREADS, 2)
 
 
-    // Create a local Flink server
     val flinkCluster = new MiniCluster(
-      new MiniClusterConfiguration(config, 1, RpcServiceSharing.SHARED, null))
+      new MiniClusterConfiguration.Builder()
+        .setConfiguration(config)
+        .setNumTaskManagers(1)
+        .setRpcServiceSharing(RpcServiceSharing.SHARED)
+        .setCommonBindAddress(null)
+        .build()
+      //new MiniClusterConfiguration(config, 1, RpcServiceSharing.SHARED, null, MiniCluster.HaServices.WITH_LEADERSHIP_CONTROL))
+    )
     try {
       // Start server and create environment
       flinkCluster.start()

@@ -15,7 +15,7 @@
 
 package com.lightbend.modelserving.akka
 
-import akka.actor.Scheduler
+import akka.actor.typed.Scheduler
 import akka.actor.typed.ActorRef
 import akka.actor.typed.scaladsl.AskPattern._
 import akka.http.scaladsl.server.Directives._

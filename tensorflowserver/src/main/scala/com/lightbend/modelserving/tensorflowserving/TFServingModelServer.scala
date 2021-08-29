@@ -21,8 +21,9 @@ import akka.actor.typed.{ActorRef, ActorSystem}
 import akka.http.scaladsl.Http
 import akka.kafka.scaladsl.Consumer
 import akka.kafka.{ConsumerSettings, Subscriptions}
+import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Sink
-import akka.stream.typed.scaladsl.{ActorFlow, ActorMaterializer}
+import akka.stream.typed.scaladsl.ActorFlow
 import akka.util.Timeout
 import com.lightbend.modelserving.configuration.ModelServingConfiguration
 import com.lightbend.modelserving.model.ServingResult
@@ -46,12 +47,12 @@ object TFServingModelServer {
     Behaviors.setup[TFModelServerActor](
       context => new TFModelServerBehaviour(context)), "ModelServing")
 
-  implicit val materializer = ActorMaterializer()
+  //implicit val materializer = ActorMaterializer()
   implicit val executionContext = modelServer.executionContext
   implicit val askTimeout = Timeout(30.seconds)
 
   // Configuration properties for the Kafka topic.
-  val dataSettings = ConsumerSettings(modelServer.toUntyped, new ByteArrayDeserializer, new ByteArrayDeserializer)
+  val dataSettings = ConsumerSettings(modelServer.toClassic, new ByteArrayDeserializer, new ByteArrayDeserializer)
     .withBootstrapServers(KAFKA_BROKER)
     .withGroupId(DATA_GROUP)
     .withProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
@@ -69,17 +70,17 @@ object TFServingModelServer {
         println(s"Model served in ${System.currentTimeMillis() - result.submissionTs} ms, with result ${result.result} " +
           s"(model ${result.name}, data type ${result.dataType})")))
     // Rest Server
-    startRest(modelServer)
+    startRest(/*modelServer*/)
   }
 
-  def startRest(modelServerManager: ActorSystem[TFModelServerActor]): Unit = {
+  def startRest(/*modelServerManager: ActorSystem[TFModelServerActor]*/): Unit = {
 
     implicit val timeout = Timeout(10.seconds)
-    implicit val system = modelServerManager.toUntyped
+    //implicit val system = modelServerManager
 
     val host = "0.0.0.0"
     val port = MODELSERVING_PORT
-    val routes = TFQueriesAkkaHttpResource.storeRoutes(modelServerManager)(modelServerManager.scheduler)
+    val routes = TFQueriesAkkaHttpResource.storeRoutes(modelServer)(modelServer.scheduler)
 
     val _ = Http().bindAndHandle(routes, host, port) map
       { binding =>
