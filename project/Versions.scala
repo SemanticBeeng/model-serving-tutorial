@@ -30,8 +30,8 @@ object Versions {
 
   val alpakkaKafkaVersion   = "2.1.1"
   val akkaVersion           = "2.6.16"
-  val akkaHttpVersion       = "10.2.6"
-  val akkaHttpJsonVersion   = "1.37.0"
+  val akkaHttpVersion       = "10.2.4"
+  val akkaHttpJacksonVersion= "1.37.0"
 
   val gsonVersion           = "2.8.5"
 

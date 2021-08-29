@@ -46,7 +46,7 @@ object Dependencies {
 
   val akkaStreamTyped       = "com.typesafe.akka"       %% "akka-stream-typed"                  % akkaVersion
   val akkaHttp              = "com.typesafe.akka"       %% "akka-http"                          % akkaHttpVersion
-  val akkaHttpJsonJackson   = "de.heikoseeberger"       %% "akka-http-jackson"                  % akkaHttpJsonVersion
+  val akkaHttpJsonJackson   = "de.heikoseeberger"       %% "akka-http-jackson"                  % akkaHttpJacksonVersion
   val akkatyped             = "com.typesafe.akka"       %% "akka-actor-typed"                   % akkaVersion
 
   val gson                  = "com.google.code.gson"     % "gson"                               % gsonVersion
